@@ -28,5 +28,5 @@ cd BattleShipGame
 ```
 
 | Gameplay Example |
-| ![Gameplay Screenshot](src/main/resources/screenshots/gameplay.png/gameplay.png)
-| ![Gameplay Screenshot2](src/main/resources/screenshots/gameplay.png/gameplay2.png)
+| ![Gameplay Screenshot](src/main/resources/screenshots/gameplay.png)
+| ![Gameplay Screenshot2](src/main/resources/screenshots/gameplay2.png)
