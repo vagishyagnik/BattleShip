@@ -17,7 +17,14 @@ public class Ship {
     public String getId() { return id; }
 
     public boolean occupies(Point2D p) {
-        return cells.contains(p);
+        if (cells.contains(p)) {
+            for (Point2D cell: cells) {
+                if (cell.equals(p)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void destroy() {
