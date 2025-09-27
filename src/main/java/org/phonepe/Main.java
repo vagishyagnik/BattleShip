@@ -13,7 +13,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Game game = new Game();
 
-        System.out.println("=== Welcome to Battleship CLI Game ===");
+        System.out.println("=== Battleship CLI Game Started :: [Vagish] ===");
         System.out.println("Type 'help' for list of commands.");
 
         while (true) {
@@ -70,7 +70,7 @@ public class Main {
                 }
 
             } catch (Exception e) {
-                System.err.println("⚠️  Error: " + e.getMessage());
+                System.out.println("⚠️  Error: " + e.getMessage());
             }
         }
     }

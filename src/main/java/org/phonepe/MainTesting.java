@@ -17,7 +17,7 @@ public class MainTesting {
             // add a second ship
             g.addShip("SH2", 0, 0, 4, 5, 1); // size=0 => single cell ship
         } catch (Exception ex) {
-            System.err.println("Error adding ship: " + ex.getMessage());
+            System.out.println("Error adding ship: " + ex.getMessage());
             return;
         }
 
