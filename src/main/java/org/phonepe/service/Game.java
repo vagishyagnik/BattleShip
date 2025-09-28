@@ -37,6 +37,7 @@ public class Game {
 
     public void initGame(int N) {
         if (N <= 1) throw new IllegalArgumentException("N must be > 1");
+        if (N%2 != 0) throw new IllegalArgumentException("N cannot be odd!! We need to divide the space equally among Player A & Player B");
         this.N = N;
         this.playerA = new Player("PlayerA");
         this.playerB = new Player("PlayerB");
@@ -87,7 +88,7 @@ public class Game {
         playerA.addShip(shipA);
         playerB.addShip(shipB);
 
-        System.out.println("Added ship '" + id + "' with size radius=" + size + " for both players.");
+        System.out.println("Added ship '" + id + "' with size length=" + size + " for both players.");
     }
 
     /**
@@ -103,7 +104,6 @@ public class Game {
 
         Player current = playerA;
         Player opponent = playerB;
-        boolean gameOver = false;
 
         while (true) {
             // choose a random coordinate in opponent's half that hasn't been fired before
@@ -124,7 +124,6 @@ public class Game {
             // check for game end
             if (opponent.remainingShips() == 0) {
                 System.out.println("GameOver. " + current.getName() + " wins.");
-                gameOver = true;
                 break;
             }
             // swap turns
@@ -149,17 +148,19 @@ public class Game {
         }
         // mark PlayerA ships as A-id and PlayerB as B-id (for destroyed ships we still show id)
         for (Ship s : playerA.getShips()) {
+            if (s.isDestroyed()) continue;
             for (Point2D p : s.getCells()) {
-                grid[p.y][p.x] = s.getId();
+                    grid[p.y][p.x] = s.getId();
             }
         }
         for (Ship s : playerB.getShips()) {
+            if (s.isDestroyed()) continue;
             for (Point2D p : s.getCells()) {
-                grid[p.y][p.x] = s.getId();
+                    grid[p.y][p.x] = s.getId();
             }
         }
         // print grid with y from 0..N-1 (top to bottom). Column x increases left->right
-        System.out.println("Battlefield view (format grid[x][y], top-left is (0,0)):");
+        System.out.println("Battlefield view (format grid[y][x], top-left is (0,0)):");
         for (int r = 0; r < N; r++) {
             StringBuilder sb = new StringBuilder();
             for (int c = 0; c < N; c++) {
@@ -204,7 +205,7 @@ public class Game {
         // select uniformly a random cell within the owner's half that hasn't been fired at before.
         // We'll attempt random selection; if too many tried, fall back to deterministic scan.
         int attempts = 0;
-        int maxAttempts = 5000;
+        int maxAttempts = 5000000;
         while (attempts < maxAttempts) {
             int x = random.nextInt(N);
             int y = random.nextInt(N);

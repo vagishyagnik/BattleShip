@@ -1,5 +1,7 @@
 package org.phonepe.models;
 
+import java.util.Objects;
+
 public class Point2D {
     public final int x;
     public final int y;
@@ -16,7 +18,7 @@ public class Point2D {
 
     @Override
     public int hashCode() {
-        return 31 * x + y;
+        return 31 * Objects.hashCode(x) + Objects.hashCode(y);
     }
 
     @Override

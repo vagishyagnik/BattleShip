@@ -63,7 +63,9 @@ public class Main {
 
                     case "startgame":
                         game.startGame();
-                        break;
+                        game.viewBattleField();
+                        System.out.println("Exiting Battleship. Goodbye!");
+                        return;
 
                     default:
                         System.out.println("Unknown command: " + cmd + ". Type 'help' for list.");
